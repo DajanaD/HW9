@@ -38,8 +38,8 @@ def parse_author_page(author_url):
         return None
 
 def save_to_json(data, filename):
-    with open(filename, 'w') as f:
-        json.dump(data, f, indent=2)
+    with open(filename, 'w', encoding='utf-8') as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
 
 def main():
     base_url = 'http://quotes.toscrape.com'
@@ -53,6 +53,7 @@ def main():
         quotes, authors = parse_quotes(page)
         quotes_all.extend(quotes)
         authors_all.update(authors)
+        
         
         next_page = soup.find('li', class_='next')
         while next_page:
