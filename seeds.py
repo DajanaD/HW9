@@ -1,5 +1,6 @@
 import json
 from models import Author, Quote
+import scrapy 
 import connect
 
 
@@ -29,7 +30,9 @@ def load_quotes_from_json(file_path):
             quote = Quote(**quote_data, author=author)
             quote.save()
 
-if __name__ == "__main__":
+def main():
+    scrapy.main()
+    
     # Шлях до JSON-файлів
     authors_file_path = 'authors.json'
     quotes_file_path = 'quotes.json'
@@ -37,3 +40,8 @@ if __name__ == "__main__":
     # Завантаження даних з JSON-файлів
     load_authors_from_json(authors_file_path)
     load_quotes_from_json(quotes_file_path)
+
+if __name__ == '__main__':
+    main()
+
+    

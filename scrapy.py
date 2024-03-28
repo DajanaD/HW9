@@ -71,8 +71,9 @@ def main():
     save_to_json(quotes_all, 'quotes.json')
     
     for author in authors_all:
-        author = author.replace(".", " ")
-        author_url = base_url + '/author/' + '-'.join(author.title().split())
+        author = author.replace(".", " ").replace("é", "e").replace("'", "")
+        # author = author.replace("é", " e")
+        author_url = base_url + '/author/' + '-'.join(author.split())
         author_info = parse_author_page(author_url)
         if author_info:
             authors_info.append(author_info)
